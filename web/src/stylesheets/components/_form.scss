@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  height: 200px;
+}
+.label {
+  font-weight: 600;
+}
+.input {
+  border-radius: 5px;
+  height: 25px;
+}
+.btn {
+  height: 30px;
+  width: 150px;
+  border-radius: 20px;
+  font-size: $textN;
+}

@@ -1,0 +1,9 @@
+.landing {
+  text-align: center;
+  padding: 15px;
+  height: 100vh;
+  &__title {
+    font-size: $textXL;
+    margin: 15px;
+  }
+}

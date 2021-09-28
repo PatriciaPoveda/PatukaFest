@@ -1,0 +1,52 @@
+.films {
+  display: flex;
+  flex-wrap: wrap;
+  // flex-direction: column;
+  justify-content: space-around;
+
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // grid-template-rows: 230px 230px 230px 230px;
+  // grid-template-rows: 1fr;
+  // grid-gap: 10px;
+
+  // @media all and (min-width: 768px) {
+  //   grid-template-columns: 1fr 1fr 1fr;
+  //   grid-gap: 20px;
+  //   padding: 15px;
+  // }
+  // @media all and (min-width: 1200px) {
+  //   grid-template-columns: 160px 160px 160px 160px 160px;
+  //   grid-template-rows: 1fr 1fr;
+  //   grid-gap: 5px;
+  // }
+}
+.searchFilm {
+  height: 230px;
+  width: 136px;
+  margin-top: 15px;
+  // border: 1px solid black;
+  background-color: red;
+  border-radius: 5px;
+  font-size: $textS;
+  text-align: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  overflow: hidden;
+  @media all and (min-width: 768px) {
+    height: 270px;
+    width: 154px;
+  }
+  &__poster {
+    height: 180px;
+    width: 136px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    // border: 1px solid black;
+    @media all and (min-width: 768px) {
+      height: 220px;
+      width: 154px;
+    }
+  }
+}

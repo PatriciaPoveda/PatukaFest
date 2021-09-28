@@ -1,0 +1,10 @@
+.footer {
+  height: 8vh;
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  &__list {
+    display: flex;
+  }
+}
