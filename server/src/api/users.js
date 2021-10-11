@@ -1,12 +1,13 @@
 const usersData = require("../data/users");
+const encrypt = require("../helper/handleBcrypt");
 
-const login = (req, res) => {
-  const userFound = usersData.getUserByNameAndPassword(
-    req.body.userName,
-    req.body.password
+const login = async (req, res) => {
+  const userFound = usersData.getUserByNameAndPassword(req.body.userName);
+  const checkPassword = await encrypt.compare(
+    req.body.password,
+    userFound.password
   );
-
-  if (userFound) {
+  if (checkPassword) {
     res.json({
       error: false,
       userId: userFound.id,
@@ -20,10 +21,11 @@ const login = (req, res) => {
     });
   }
 };
-const userSignUp = (req, res) => {
+const userSignUp = async (req, res) => {
+  const passwordHash = await encrypt.encrypt(req.body.password);
   const userCreate = usersData.addUserByNameAndPassword(
     req.body.userName,
-    req.body.password
+    passwordHash
   );
 
   if (userCreate.changes === 1) {
@@ -40,10 +42,12 @@ const userSignUp = (req, res) => {
   }
 };
 
-const userUpdate = (req, res) => {
+const userUpdate = async (req, res) => {
+  const passwordHash = await encrypt.encrypt(req.body.passwordUpdate);
+
   const userFound = usersData.getUserUpdate(
     req.body.userNameUpdate,
-    req.body.passwordUpdate,
+    passwordHash,
     req.params.userId
   );
 

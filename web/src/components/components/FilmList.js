@@ -4,11 +4,10 @@ import FilmArticle from "./FilmArticle";
 const FilmList = (props) => {
   const [filmId, setFilmId] = useState("");
 
+  //Separar "useState" y la funcion recibida por props en dos funciones diferentes.
   const getOneFilm = (ev) => {
     setFilmId(ev.currentTarget.id);
-    props.handleFilm({
-      filmId: filmId,
-    });
+    props.handleFilm(filmId);
   };
   const films = props.allFilms.map((film) => {
     return (

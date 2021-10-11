@@ -15,12 +15,15 @@ const Update = (props) => {
 
   const handleFormUpdate = (ev) => {
     ev.preventDefault();
-
-    props.handleUserUpdate({
-      userNameUpdate: userNameUpdate,
-      passwordUpdate: passwordUpdate,
-    });
-    ev.target.reset();
+    if (userNameUpdate && passwordUpdate !== "") {
+      props.handleUserUpdate({
+        userNameUpdate: userNameUpdate,
+        passwordUpdate: passwordUpdate,
+      });
+      ev.target.reset();
+    } else {
+      console.log("error");
+    }
   };
   return (
     <>
@@ -33,7 +36,7 @@ const Update = (props) => {
           <input
             type="text"
             id="name"
-            placeholder="Ej: Laura"
+            off={props.userName}
             className="input "
             onChange={handleUserNameUpdate}
           />
@@ -41,7 +44,7 @@ const Update = (props) => {
             Cambia tu contraseña
           </label>
           <input
-            type="text"
+            type="password"
             id="password"
             className="input js-password"
             onChange={handlePasswordUpdate}

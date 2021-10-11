@@ -1,10 +1,8 @@
 const data = require("../index");
 
-const getUserByNameAndPassword = (userName, password) => {
-  const query = data.db.prepare(
-    `SELECT * FROM users WHERE userName = ? AND password = ?`
-  );
-  const user = query.get(userName, password);
+const getUserByNameAndPassword = (userName) => {
+  const query = data.db.prepare(`SELECT * FROM users WHERE userName = ? `);
+  const user = query.get(userName);
   return user;
 };
 //CREATE

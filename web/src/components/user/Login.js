@@ -39,7 +39,7 @@ const Login = (props) => {
           Introduce tu contraseña
         </label>
         <input
-          type="text"
+          type="password"
           id="password"
           className="login__form--input input"
           onChange={handlePassword}

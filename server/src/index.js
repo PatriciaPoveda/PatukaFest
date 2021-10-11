@@ -1,6 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const apiUsers = require("./api/users");
+const getFilmsFestival = require("./api/films");
 const Database = require("better-sqlite3");
 const path = require("path");
 
@@ -24,3 +25,4 @@ app.post("/api/login", apiUsers.login);
 app.post("/api/create", apiUsers.userSignUp);
 app.post("/api/delete/:userId", apiUsers.userDelete);
 app.post("/api/update/:userId", apiUsers.userUpdate);
+app.get("/api/festivals", getFilmsFestival);

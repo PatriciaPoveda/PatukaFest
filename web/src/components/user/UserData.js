@@ -8,12 +8,13 @@ import Header from "../layout/Header";
 const UserData = (props) => {
   return (
     <>
-      <Header userName={props.userName} signOff={props.signOff}></Header>
+      <Header signOff={props.signOff}></Header>
       <section className="main">
         <details>
           <summary className="title">Opciones del usuario</summary>
           <div className="container__userData">
             <Update
+              userName={props.userName}
               handleUserUpdate={props.handleUserUpdate}
               updateMessage={props.updateMessage}
             ></Update>

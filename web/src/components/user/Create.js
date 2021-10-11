@@ -51,7 +51,7 @@ const Create = (props) => {
             Introduce una contraseña
           </label>
           <input
-            type="text"
+            type="password"
             id="password"
             className="login__form--input input"
             onChange={handlePassword}
@@ -61,7 +61,7 @@ const Create = (props) => {
             Repite la contraseña
           </label>
           <input
-            type="text"
+            type="password"
             id="password"
             className="login__form--input input"
             onChange={handlePasswordRepit}
@@ -69,7 +69,7 @@ const Create = (props) => {
           />
           <input
             type="submit"
-            value="Inicia sesión"
+            value="Crear usuario"
             className="login__form--button btn"
           />
         </form>

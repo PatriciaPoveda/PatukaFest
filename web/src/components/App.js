@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import localStorage from "../services/localStorage";
 import Landing from "./layout/Landing";
@@ -6,6 +6,7 @@ import Main from "./layout/Main";
 import UserData from "./user/UserData";
 import api from "../services/api";
 import apiFilms from "../services/apiFilms";
+import getFilmsFestival from "../services/apiFestivals";
 // import searchFilm from "../services/apiFilms";
 
 // import PrivateRoute from "./components/PrivateRoute";
@@ -21,6 +22,7 @@ const App = () => {
   // const [userId, setUserId] = useState("");
   const [userName, setUserName] = useState(localStorageUser.userName);
   const [allFilms, setAllFilms] = useState([]);
+  const [festivalFilms, setFestivalFilms] = useState([]);
 
   console.log(userId);
   //Sign In
@@ -88,10 +90,20 @@ const App = () => {
     });
   };
   const handleFilm = (filmId) => {
+    console.log(filmId);
     apiFilms.searchInfoFilm(filmId).then((data) => {
       console.log(data);
     });
   };
+
+  useEffect(() => {
+    if (userId) {
+      getFilmsFestival().then((data) => {
+        console.log(data);
+        setFestivalFilms(data.data);
+      });
+    }
+  }, [userId]);
   // return (
   //   <Switch>
   //     <Route exact path="/">
@@ -145,10 +157,12 @@ const App = () => {
               handleSearchFilm={handleSearchFilm}
               allFilms={allFilms}
               handleFilm={handleFilm}
+              festivalFilms={festivalFilms}
             ></Main>
           </Route>
           <Route path="/usuario">
             <UserData
+              userName={userName}
               signOff={signOff}
               handleUserUpdate={handleUserUpdate}
               handleUserDelete={handleUserDelete}

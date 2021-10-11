@@ -1,8 +1,9 @@
 // import React from "react";
 import FilmList from "../components/FilmList";
 import FilmSearch from "../components/FilmSearch";
+import Festivals from "../components/Festivals";
 import Header from "./Header";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 const Main = (props) => {
   return (
@@ -26,8 +27,12 @@ const Main = (props) => {
             handleFilm={props.handleFilm}
           ></FilmList>
         </details>
+        <details>
+          <summary>Festivales</summary>
+          <Festivals festivalFilms={props.festivalFilms}></Festivals>
+        </details>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 };

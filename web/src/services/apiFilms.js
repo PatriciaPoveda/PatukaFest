@@ -1,4 +1,4 @@
-const apiBaseUrl = "https://imdb-api.com/en/API";
+const apiBaseUrl = "https://imdb-api.com/es/API";
 
 const searchFilm = (filmData) => {
   return fetch(`${apiBaseUrl}/SearchMovie/k_0i4wyq32/${filmData}`).then((res) =>
@@ -15,3 +15,5 @@ const exportObj = {
   searchInfoFilm: searchInfoFilm,
 };
 export default exportObj;
+
+// ${apiBaseUrl}/Wikipedia/k_0i4wyq32/${filmId}
