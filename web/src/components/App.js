@@ -7,6 +7,7 @@ import UserData from "./user/UserData";
 import api from "../services/api";
 import apiFilms from "../services/apiFilms";
 import getFilmsFestival from "../services/apiFestivals";
+import FestivalList from "./components/FestivalList";
 // import searchFilm from "../services/apiFilms";
 
 // import PrivateRoute from "./components/PrivateRoute";
@@ -24,7 +25,6 @@ const App = () => {
   const [allFilms, setAllFilms] = useState([]);
   const [festivalFilms, setFestivalFilms] = useState([]);
 
-  console.log(userId);
   //Sign In
   const handlesignIn = (data) => {
     api.sendLogin(data).then((data) => {
@@ -62,6 +62,8 @@ const App = () => {
       } else {
         setUpdateMessage("");
         setUpdateMessage(data.message);
+        localStorage.remove("user");
+        window.location.reload();
       }
     });
   };
@@ -85,9 +87,13 @@ const App = () => {
   // <SEARCH FILMS>
   //Search Film
   const handleSearchFilm = (filmData) => {
-    apiFilms.searchFilm(filmData).then((data) => {
-      setAllFilms(data.results);
-    });
+    if (filmData === "") {
+      console.log("error");
+    } else {
+      apiFilms.searchFilm(filmData).then((data) => {
+        setAllFilms(data.results);
+      });
+    }
   };
   const handleFilm = (filmId) => {
     console.log(filmId);
@@ -95,7 +101,7 @@ const App = () => {
       console.log(data);
     });
   };
-
+  // <FESTIVAL FILMS>
   useEffect(() => {
     if (userId) {
       getFilmsFestival().then((data) => {
@@ -104,6 +110,12 @@ const App = () => {
       });
     }
   }, [userId]);
+
+  // <SCORE AWARS>
+  const handleScore = (data) => {
+    console.log(data, userId);
+  };
+
   // return (
   //   <Switch>
   //     <Route exact path="/">
@@ -169,6 +181,13 @@ const App = () => {
               updateMessage={updateMessage}
               deleteMessage={deleteMessage}
             ></UserData>
+          </Route>
+          <Route path="/golden-globs-2022">
+            <FestivalList
+              festivalFilms={festivalFilms}
+              handleScore={handleScore}
+              title="Globos de Oro"
+            ></FestivalList>
           </Route>
         </Switch>
       </>

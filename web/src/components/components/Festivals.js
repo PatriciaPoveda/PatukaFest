@@ -1,21 +1,11 @@
-// import React from "react";
+import { Link } from "react-router-dom";
 
 const Festivals = (props) => {
-  const festivalFilms = props.festivalFilms.map((film) => {
-    return (
-      <li
-        className="film__list"
-        key={film.filmId}
-        id={film.filmId}
-        // onClick={getOneFilm}
-      >
-        {film.title}
-        {film.synopsis}
-        {/* <FilmArticle title={film.title} image={film.image} id={film.id} /> */}
-      </li>
-    );
-  });
-  return <ul className="films">{festivalFilms}</ul>;
+  return (
+    <nav>
+      <Link to="/golden-globs-2022">Globos de Oro</Link>
+    </nav>
+  );
 };
 
 export default Festivals;

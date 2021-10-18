@@ -3,7 +3,7 @@ const data = require("../index");
 const getFilmsFestival = (req, res) => {
   // const getFilms = usersData.getUserDelete();
   // const getFilms = (userName) => {
-  const query = data.db.prepare(`SELECT * FROM films `);
+  const query = data.db.prepare(`SELECT * FROM awars2022 WHERE awars = 0 OR 2`);
   const films = query.all();
   // return films;
   // };
