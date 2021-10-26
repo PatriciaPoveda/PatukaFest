@@ -3,7 +3,8 @@ import React, { useState } from "react";
 const FestivalArticle = (props) => {
   const [score, setScore] = useState("");
   const getScore = (ev) => {
-    setScore(ev.target.value);
+    const scoreNumber = parseFloat(ev.target.value);
+    setScore(scoreNumber);
   };
   const saveScore = (ev) => {
     ev.preventDefault();
@@ -12,6 +13,7 @@ const FestivalArticle = (props) => {
       filmId: filmId,
       score: score,
     });
+    ev.target.reset();
   };
   return (
     <article className="searchFilm">
@@ -22,6 +24,7 @@ const FestivalArticle = (props) => {
         alt={`Poster: ${props.title}`}
       /> */}
       <h2 className="searchFilm__Name">{props.title}</h2>
+      <p>{props.score}</p>
       {/* <p>{props.synopsis}</p> */}
       <form action="" onSubmit={saveScore} id={props.id}>
         <label htmlFor="score">Nota</label>

@@ -21,7 +21,7 @@ const sendSignUp = (newUser) => {
 //Update
 const sendUserUpdate = (data, userId) => {
   return fetch(`${apiBaseUrl}/update/${userId}`, {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" },
   }).then((res) => res.json());
@@ -31,7 +31,7 @@ const sendUserUpdate = (data, userId) => {
 
 const sendUserDelete = (userId) => {
   return fetch(`${apiBaseUrl}/delete/${userId}`, {
-    method: "POST",
+    method: "DELETE",
   }).then((res) => res.json());
 };
 

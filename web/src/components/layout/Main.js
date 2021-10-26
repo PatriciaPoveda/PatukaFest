@@ -29,9 +29,10 @@ const Main = (props) => {
         </details>
         <details>
           <summary>Festivales</summary>
-          <Festivals festivalFilms={props.festivalFilms}></Festivals>
+          <Festivals></Festivals>
         </details>
       </div>
+
       {/* <Footer></Footer> */}
     </>
   );

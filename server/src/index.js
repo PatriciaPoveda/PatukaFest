@@ -1,7 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const apiUsers = require("./api/users");
-const getFilmsFestival = require("./api/films");
+const apiFilms = require("./api/films");
 const Database = require("better-sqlite3");
 const path = require("path");
 
@@ -21,8 +21,13 @@ module.exports.db = new Database(dbPath, {
 
 app.use(express.static("./public"));
 
+//USER ENDPOINT
 app.post("/api/login", apiUsers.login);
 app.post("/api/create", apiUsers.userSignUp);
-app.post("/api/delete/:userId", apiUsers.userDelete);
-app.post("/api/update/:userId", apiUsers.userUpdate);
-app.get("/api/festivals", getFilmsFestival);
+app.delete("/api/delete/:userId", apiUsers.userDelete);
+app.put("/api/update/:userId", apiUsers.userUpdate);
+
+//AWARS ENDPOINT
+app.get("/api/golden-globs", apiFilms.getGoldenGlobs);
+app.post("/api/awars/:userId", apiFilms.saveScoreFilm);
+app.post("/api/score/golden-globs/:userId", apiFilms.getScoreGoldenGlobs);

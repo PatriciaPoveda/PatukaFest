@@ -31,7 +31,7 @@ const Create = (props) => {
     <>
       <details>
         <summary className="login__title title">Crear Usuario</summary>
-        <form
+        {/* <form
           action=""
           className="login__form form"
           onSubmit={handleFormSignUp}
@@ -74,7 +74,89 @@ const Create = (props) => {
           />
         </form>
         <p className="confirmUser__text">{props.loginError}</p>
-        <p>{props.createError}</p>
+        <p>{props.createError}</p> */}
+
+        {/* boostrap */}
+
+        <div className="container form">
+          <div className="card card-login mx-auto text-center bg-dark">
+            {/* <div className="card-header mx-auto bg-dark">
+            <span>
+              {" "}
+              <img
+                src="https://amar.vote/assets/img/amarVotebd.png"
+                className="w-75"
+                alt="Logo"
+              />{" "}
+            </span>
+            <br />
+            <span className="logo_title mt-5"> Login Dashboard </span>
+            <!--            <h1>--><?php //echo $message?><!--</h1>-->
+          </div> */}
+
+            <div className="card-body">
+              <form action="" method="post" onSubmit={handleFormSignUp}>
+                <div className="input-group form-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <i className="fas fa-user"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    name="userName"
+                    className="form-control"
+                    placeholder="Usuario"
+                    onChange={handleUserName}
+                    required
+                  />
+                </div>
+
+                <div className="input-group form-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <i className="fas fa-key"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Contraseña"
+                    onChange={handlePassword}
+                    required
+                  />
+                </div>
+                <div className="input-group form-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <i className="fas fa-key"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Repite Contraseña"
+                    onChange={handlePasswordRepit}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <input
+                    type="submit"
+                    name="btn"
+                    value="Crea tu usuario"
+                    className="btn btn-outline-danger float-right login_btn"
+                  />
+                </div>
+              </form>
+              <p className="confirmUser__text">{props.loginError}</p>
+              <p>{props.createError}</p>
+            </div>
+          </div>
+        </div>
       </details>
     </>
   );
