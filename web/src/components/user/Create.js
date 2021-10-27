@@ -6,7 +6,8 @@ const Create = (props) => {
   const [passwordRepit, setPasswordRepit] = useState("");
 
   const handleUserName = (ev) => {
-    setUserName(ev.target.value);
+    const userName = ev.target.value.toLowerCase();
+    setUserName(userName);
   };
 
   const handlePassword = (ev) => {

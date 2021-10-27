@@ -7,6 +7,7 @@ import UserData from "./user/UserData";
 import api from "../services/api";
 import apiFilms from "../services/apiFilms";
 import apiFestival from "../services/apiFestivals";
+import apiGroup from "../services/apiGroup";
 import FestivalList from "./components/FestivalList";
 import ScoreList from "./components/ScoreList";
 
@@ -24,7 +25,7 @@ const App = () => {
   const [deleteMessage, setDeleteMessage] = useState("");
   const [updateMessage, setUpdateMessage] = useState("");
   const [scoreMessage, setScoreMessage] = useState("");
-  // const [userId, setUserId] = useState("");
+  // const [userGroupName, setUserGroupName] = useState([]);
   const [allFilms, setAllFilms] = useState([]);
   const [filmsGodenGlobs, setFilmsGodenGlobs] = useState([]);
   const [scoreGoldenGlobs, setScoreGoldenGlobs] = useState([]);
@@ -40,8 +41,11 @@ const App = () => {
       } else {
         setLoginError("");
         setUserId(data.userId);
+        const capitalize =
+          data.userName.charAt(0).toUpperCase() + data.userName.slice(1);
+        data.userName = capitalize;
         localStorage.set("user", data);
-        setUserName(data.userName);
+        setUserName(capitalize);
       }
     });
   };
@@ -149,6 +153,24 @@ const App = () => {
   };
   // </FESTIVAL FILMS>
 
+  //<GROUPS>
+
+  // Buscar los nombres de los nuevos miembros de un grupo en la DB. Si estan, se guardan en un array las userId que se guarda en un estado. Los nombres se guardan en otro array y se envia al componente para ue se pinten los nombres.
+  const userGroupId = [userId];
+  const userGroupName = [userName];
+
+  const searchUserNameInDB = (userName) => {
+    apiGroup.sendUserNameToDb(userName).then((data) => {
+      if (!userGroupName.includes(data.userGroupName)) {
+        userGroupName.push(data.userGroupName);
+      }
+    });
+  };
+
+  //Enviar a la DB el nombre del grupo recibido del formulario y los usuarios que pertenecen al grupo recibido del estado.
+
+  //</GROUPS>
+
   //Renderiza la página de login o el main dependiendo de si esta el usuario guardado en el estado o no.
   const renderLanding = () => {
     return (
@@ -171,6 +193,8 @@ const App = () => {
               handleSearchFilm={handleSearchFilm}
               allFilms={allFilms}
               handleFilm={handleFilm}
+              searchUserNameInDB={searchUserNameInDB}
+              userGroupName={userGroupName}
             ></Main>
           </Route>
           <Route path="/usuario">

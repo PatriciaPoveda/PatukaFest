@@ -2,6 +2,7 @@
 import FilmList from "../components/FilmList";
 import FilmSearch from "../components/FilmSearch";
 import Festivals from "../components/Festivals";
+import CreateGroup from "../components/CreateGroup";
 import Header from "./Header";
 // import Footer from "./Footer";
 
@@ -30,6 +31,13 @@ const Main = (props) => {
         <details>
           <summary>Festivales</summary>
           <Festivals></Festivals>
+        </details>
+        <details>
+          <summary>Crear nuevo grupo</summary>
+          <CreateGroup
+            searchUserNameInDB={props.searchUserNameInDB}
+            userGroupName={props.userGroupName}
+          ></CreateGroup>
         </details>
       </div>
 

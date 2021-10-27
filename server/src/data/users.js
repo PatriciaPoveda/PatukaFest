@@ -1,6 +1,6 @@
 const data = require("../index");
 
-const getUserByNameAndPassword = (userName) => {
+const getUserByName = (userName) => {
   const query = data.db.prepare(`SELECT * FROM users WHERE userName = ? `);
   const user = query.get(userName);
   return user;
@@ -28,7 +28,7 @@ const getUserDelete = (userId) => {
   return user;
 };
 module.exports = {
-  getUserByNameAndPassword: getUserByNameAndPassword,
+  getUserByName: getUserByName,
   addUserByNameAndPassword: addUserByNameAndPassword,
   getUserDelete: getUserDelete,
   getUserUpdate: getUserUpdate,

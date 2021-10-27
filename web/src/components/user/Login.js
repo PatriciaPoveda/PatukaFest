@@ -5,7 +5,8 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
 
   const handleUserName = (ev) => {
-    setUserName(ev.target.value);
+    const userName = ev.target.value.toLowerCase();
+    setUserName(userName);
   };
 
   const handlePassword = (ev) => {

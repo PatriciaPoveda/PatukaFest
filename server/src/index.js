@@ -2,6 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const apiUsers = require("./api/users");
 const apiFilms = require("./api/films");
+const apiGroups = require("./api/groups");
 const Database = require("better-sqlite3");
 const path = require("path");
 
@@ -31,3 +32,6 @@ app.put("/api/update/:userId", apiUsers.userUpdate);
 app.get("/api/golden-globs", apiFilms.getGoldenGlobs);
 app.post("/api/awars/:userId", apiFilms.saveScoreFilm);
 app.post("/api/score/golden-globs/:userId", apiFilms.getScoreGoldenGlobs);
+
+//GROUP ENDPOINT
+app.post("/api/search-username", apiGroups);

@@ -2,7 +2,7 @@ const usersData = require("../data/users");
 const encrypt = require("../helper/handleBcrypt");
 
 const login = async (req, res) => {
-  const userFound = usersData.getUserByNameAndPassword(req.body.userName);
+  const userFound = usersData.getUserByName(req.body.userName);
   const checkPassword = await encrypt.compare(
     req.body.password,
     userFound.password

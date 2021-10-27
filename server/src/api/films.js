@@ -1,4 +1,3 @@
-// const data = require("../index");
 const filmsData = require("../data/films");
 
 const getGoldenGlobs = (req, res) => {
