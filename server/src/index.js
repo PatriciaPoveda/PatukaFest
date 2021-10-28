@@ -34,4 +34,5 @@ app.post("/api/awars/:userId", apiFilms.saveScoreFilm);
 app.post("/api/score/golden-globs/:userId", apiFilms.getScoreGoldenGlobs);
 
 //GROUP ENDPOINT
-app.post("/api/search-username", apiGroups);
+app.post("/api/search-username", apiGroups.searchUserNameInDB);
+app.post("/api/save-group/:userId", apiGroups.saveGroupName);

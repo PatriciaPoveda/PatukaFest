@@ -16,16 +16,18 @@ import ScoreList from "./components/ScoreList";
 const App = () => {
   // <STATE>
   const localStorageUser = localStorage.get("user");
-  // const localStorageScore = localStorage.get("score");
+  // const localStorageUserGroup = localStorage.get("usergroup");
   const [userId, setUserId] = useState(localStorageUser.userId || "");
   const [userName, setUserName] = useState(localStorageUser.userName);
-  // const [scoreId, setScoreId] = useState(localStorageScore || []);
+  // const [userGroupName, setUserGroupName] = useState(
+  //   localStorageUserGroup || [userName]
+  // );
+  const [groupId, setGroupId] = useState("");
   const [loginError, setLoginError] = useState("");
   const [createError, setCreateError] = useState("");
   const [deleteMessage, setDeleteMessage] = useState("");
   const [updateMessage, setUpdateMessage] = useState("");
   const [scoreMessage, setScoreMessage] = useState("");
-  // const [userGroupName, setUserGroupName] = useState([]);
   const [allFilms, setAllFilms] = useState([]);
   const [filmsGodenGlobs, setFilmsGodenGlobs] = useState([]);
   const [scoreGoldenGlobs, setScoreGoldenGlobs] = useState([]);
@@ -46,6 +48,7 @@ const App = () => {
         data.userName = capitalize;
         localStorage.set("user", data);
         setUserName(capitalize);
+        // setUserGroupName(capitalize);
       }
     });
   };
@@ -154,20 +157,20 @@ const App = () => {
   // </FESTIVAL FILMS>
 
   //<GROUPS>
-
-  // Buscar los nombres de los nuevos miembros de un grupo en la DB. Si estan, se guardan en un array las userId que se guarda en un estado. Los nombres se guardan en otro array y se envia al componente para ue se pinten los nombres.
-  const userGroupId = [userId];
-  const userGroupName = [userName];
-
-  const searchUserNameInDB = (userName) => {
-    apiGroup.sendUserNameToDb(userName).then((data) => {
-      if (!userGroupName.includes(data.userGroupName)) {
-        userGroupName.push(data.userGroupName);
-      }
+  //Enviar a la DB el nombre del grupo recibido del formulario y los usuarios que pertenecen al grupo recibido del estado
+  console.log(groupId);
+  const saveGroupName = (groupName) => {
+    apiGroup.saveGroupName(groupName, userId).then((data) => {
+      setGroupId(data.groupId);
     });
   };
+  // Buscar los nombres de los nuevos miembros de un grupo en la DB. Si estan, se guardan en un array las userId que se guarda en un estado. Los nombres se guardan en otro array y se envia al componente para ue se pinten los nombres.
 
-  //Enviar a la DB el nombre del grupo recibido del formulario y los usuarios que pertenecen al grupo recibido del estado.
+  const searchUserNameInDB = (userName) => {
+    apiGroup.sendUserNameToDb(userName, groupId).then((data) => {
+      console.log(data);
+    });
+  };
 
   //</GROUPS>
 
@@ -194,7 +197,7 @@ const App = () => {
               allFilms={allFilms}
               handleFilm={handleFilm}
               searchUserNameInDB={searchUserNameInDB}
-              userGroupName={userGroupName}
+              saveGroupName={saveGroupName}
             ></Main>
           </Route>
           <Route path="/usuario">

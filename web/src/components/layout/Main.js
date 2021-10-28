@@ -36,7 +36,7 @@ const Main = (props) => {
           <summary>Crear nuevo grupo</summary>
           <CreateGroup
             searchUserNameInDB={props.searchUserNameInDB}
-            userGroupName={props.userGroupName}
+            saveGroupName={props.saveGroupName}
           ></CreateGroup>
         </details>
       </div>
